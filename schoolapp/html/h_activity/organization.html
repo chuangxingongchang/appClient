@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<!-- 组织活动页面 -->
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/css_activity/organization.css"/>
+		<script type="text/javascript" src="../../js/js_util/timeFormat.js" ></script>
+		<script type="text/javascript" src="../../js/js_util/jquery-3.3.1.min.js" ></script>
+		<script type="text/javascript" src="../../js/js_util/time.js" ></script>
+		<script type="text/javascript" src="../../resource/layDate-v5.0.9/laydate/laydate.js" ></script>
+	</head>
+
+	<body>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/first/up_header.js" ></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">发布活动</h1>
+		</header>
+		<div class="mui-content">
+			<div id="titles" class="equalsStyle">
+				<p>主题：<b><input type="text" name="" id="" value="" /></b></p>
+			</div>
+			<div id="">
+				<p>上传活动图片</p>
+			</div>
+			<div id="uploadImg">
+				<img src="" id="userImg" style="width:350px; height: 150px;"/>
+			</div>
+		    <div id="" class="textareas"><p>内容：<textarea cols="50" rows="2"></textarea></p></div>
+		    <div id=""><p>活动时间:<input type="" name="" id="activity_time" value="" /></p>
+		    	
+		    	
+		    	
+    
+    
+    
+		    </div>
+		    
+		    <div id="" class="equalsStyle"><p>地点：<input type="text" name="" id="" value="" /></p></div>
+		    <div id="" class="textareas"><p>注意事项：<textarea cols="50" rows="2"></textarea></p></div>
+		    <div id="" class="textareas"><p>要求：<textarea cols="50" rows="2"></textarea></p></div>
+		    <div id="" class="equalsStyle"><p>对象：<input type="text" name="" id="" value="" /></p></div>
+		    <div id=""><p>组织者：</p></div>
+		    <div id=""><p>组织时间：<span id="time"></span></p></div>
+		    <div id="buttons">
+		    	<button class="mui-btn mui-btn-primary mui-btn-outlined" id="but_creatActivity">发布</button>
+		    	<button class="mui-btn mui-btn-danger mui-btn-outlined" id="reClear">重置</button>
+		    </div>
+		</div>
+		<script type="text/javascript">
+			var myDate = new Date();
+			var currentTime = myDate.Format("yyyy年MM月dd日");
+			$(function(){
+				// 发布活动时间
+				$("#but_creatActivity").click(function(){
+					$("div p #time").html(currentTime);
+				});
+				
+				//活动范围时间(插件)
+				laydate.render({
+  					elem: '#activity_time' //指定元素
+				});
+				
+				
+				//清除内容
+				$("#reClear").click(function(){
+					location.reload();
+				});
+				
+				//制定输入框最多255个字
+				$("textarea").blur(function(){
+					if($(this).val().length>255){
+						alert("最多只能输入255个字！");
+					}
+				});
+			
+				
+			});
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			#heads,
+			#heads button {
+				background-color: black;
+			}
+			
+			#heads button {
+				color: green;
+				font-size: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="heads" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span class="mui-title" style="color: white;">设置昵称</span><button style="float: right;margin-top: 5px;border: none;" id="complete">完成</button>
+		</header>
+		<div class="mui-content">
+			<form id="login-form" class="mui-input-group">
+				<div class="mui-input-row" id="taccount" style="margin-top: 20px;">
+					<input id="nickname" type="text" class="mui-input-clear mui-input" placeholder="新的昵称" />
+				</div>
+			</form>
+		</div>
+		<script src="../../../../js/mui.min.js"></script>
+		<script src="../../../../js/center/nickname.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

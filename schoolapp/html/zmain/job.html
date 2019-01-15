@@ -1,0 +1,342 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../../css/mui.poppicker.css" rel="stylesheet" />
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../resource/mui.picker.min.js"></script>
+		<script src="../../resource/mui.poppicker.js"></script>
+		<script src="../../js/template-web.js"></script>
+		<script src="../../js/job/jobon.js"></script>
+		<script src="../../js/openwindow.js"></script>
+		<script src="../../resource/bottom.js"></script>
+		
+		<style>
+			.mysc{
+				font-size: 14px;color: #007AFF;margin-left: 20px;
+				padding: 10px 5px;
+			}
+			
+			.job_one {
+				margin: 0 20px;
+			}
+			
+			.job_two .job_two-one {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			
+			.job_two .job_two-one span {
+				display: block;
+			}
+			
+			.job_two .job_two-one span img {
+				width: 50px;
+				height: 50px;
+			}
+			
+			.job_content .job_content_one ul li .content_a .mui-media-body span {
+				display: block;
+			}
+			
+			.content_money {
+				color: red;
+			}
+			
+			.main_content span {
+				display: block;
+			}
+			
+			.main_content span:first-child {
+				font-size: 20px;
+				overflow: hidden;
+			}
+			
+			.main_content span:last-child,
+			.main_content_v {
+				font-size: 14px;
+				color: #929292;
+			}
+			
+			.mui-table-view-cell .mui-badge {
+				font-size: 16px;
+				color: red;
+			}
+			
+			.job_three {
+				margin: 20px 0px 0px 0px;
+				width: 100%;
+				height: 40px;
+			}
+			
+			.job_three ul li {
+				width: 77px;
+				float: left;
+			}
+			
+			.job_three ul li:last-child,.job_three ul li:first-child {
+				width: 110px;
+			}
+			.job_content{
+				clear: both;
+			}
+			#nothings{
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<div class="mui-content">
+			<div class="mysc">
+				<span>我的学校：</span><span id="backs">学校</span>
+			</div>
+			<div class="mui-input-group">
+				<div class="mui-input-row mui-search">
+					<input type="search" class="mui-input-clear" placeholder="请输入岗位关键字">
+				</div>
+			</div>
+			<div class="job_one">
+				<p>增加见识和能力的你，让兼职在你的身边。</p>
+			</div>
+			<div class=" mui-text-center job_two">
+				<div class="job_two-one" id="shortjob">
+					<span><img src="../../image/job/1194992.png"/></span>
+					<span>短期兼职</span>
+				</div>
+				<div class="job_two-one" id="longjob">
+					<span><img src="../../image/job/1194976.png"/></span>
+					<span>长期兼职</span>
+				</div>
+				<div class="job_two-one" id="job_myjob">
+					<span><img src="../../image/job/1194998.png"/></span>
+					<span>我的兼职</span>
+				</div>
+				<div class="job_two-one" id="job_income">
+					<span><img src="../../image/job/1194974.png"/></span>
+					<span>收入明细</span>
+				</div>
+			</div>
+
+			<div class="job_three">
+				<ul class="mui-table-view" id="aa">
+					<li class="mui-table-view-cell mui-collapse" id="attWork">
+						<a class="mui-navigate-right" href="#item2mobile"  id="attworkContent">岗位</a>
+					</li>
+					<li class="mui-table-view-cell mui-collapse" id="attTime">
+						<a class="mui-navigate-right" href="#item3mobile" id="atttimeContent">时间</a>
+					</li>
+					<li class="mui-table-view-cell mui-collapse" id="attUnit">
+						<a class="mui-navigate-right" href="#item4mobile"  id="attunitContent">单位</a>
+					</li>
+					<li class="mui-table-view-cell mui-collapse" id="attSettle">
+						<a class="mui-navigate-right" href="#item5mobile" id="attsettleContent">结算</a>
+					</li>
+				</ul>
+			</div>
+			<div class="job_content">
+				<div class="job_content_one" id="jobContent">
+					<script id="plur" type="text/html">
+						<ul class="mui-table-view" id="uls">
+							{{if ms.status==true}}
+							{{ each plur as pl}}
+							<li class="mui-table-view-cell mui-media" id="{{pl.id}}" name="{{pl.fkPublisher}}">
+								{{each unit as wo}} {{if wo.id == pl.fkUnit}}
+								<img class="mui-media-object mui-pull-left" src="{{wo.iconlocation}}" alt="图片"> {{/if}} {{/each}}
+								<div class=" mui-media-body main_content">
+									<span>{{pl.subject}}</span>
+									<span class="main_content_v">{{pl.wordtime}}</span>
+									<span class="mui-ellipsis">{{pl.workcontent}}</span>
+								</div>
+								<div class="mui-badge mui-badge-inverted">
+									￥<span>{{pl.money}}</span> 
+									{{each unit as un}} 
+									{{if un.id == pl.fkUnit}}
+									<span class="{{un.style}}">{{un.style}}</span>
+									{{/if}} 
+									{{/each}}
+								</div>
+							</li>
+							{{/each}}
+							{{/if}}
+							{{if ms.status==false}}
+							<div class="mui-table-view-cell mui-media" id="thenothings">
+								<span id="nothings">该学校当前无兼职,敬请等待任务发布。</span>
+							</div>
+							{{/if}}
+						</ul>
+					</script>
+				</div>
+			</div>
+		</div>
+	</body>
+		<script type="text/javascript">
+				var user = JSON.parse(localStorage.getItem('tuser'));
+				var fkSchoolId ="";
+				mui.plusReady(function() {
+					attrSchool();
+					attrMainJob();
+					open('job_myjob', "../partjob/myjob.html");
+					open('shortjob', "../partjob/shortjob.html");
+					open('longjob', "../partjob/longjob.html");
+					open('job_income', "../partjob/income.html");
+					toPage("#jobContent", '../partjob/job_details/job_one.html');
+					addworkPicker();
+					addtimePicker();
+					addsettlePicker();
+					addunitPicker();
+				})
+				
+		
+				function changeContent(){
+					mui("#aa").on('tap','a',function(){
+						var attworkContento   = document.getElementById("attworkContent").innerText;
+						var atttimeContento   = document.getElementById("atttimeContent").innerText;
+						var attunitContento   = document.getElementById("attunitContent").innerText;
+						var attsettleContento = document.getElementById("attsettleContent").innerText;
+						console.log("attworkContento:"+attworkContento)
+						console.log("atttimeContento:"+atttimeContento)
+						console.log("attunitContento:"+attunitContento)
+						console.log("attsettleContento:"+attsettleContento)
+					})
+				}
+				//工作类型
+				function addworkPicker(){
+					var attWorkpick = new mui.PopPicker();
+					attWorkpick.setData([{
+						value :"1",text:'早餐派送'
+					},{
+						value :"2",text:'图书管理'
+					},{
+						value :"3",text:'卫生管理'
+					},{
+						value :"4",text:'学习辅导'
+					},{
+						value :"5",text:'论文指导'
+					},{
+						value :"6",text:'文艺演出'
+					},{
+						value :"7",text:'其他'
+					}]);
+					var showattWork = document.getElementById('attWork')
+	                    var userResult = document.getElementById('attworkContent');
+	                    showattWork.addEventListener('tap', function(event) {
+	                        attWorkpick.show(function(items) {
+	                            userResult.innerText = items[0].text;
+	                        });
+	                    }, false);
+				}
+				//时间类型
+				function addtimePicker(){
+					var attTime = new mui.PopPicker();
+					attTime.setData([{
+						value :"1",text:'短期'
+					},{
+						value :"2",text:'长期'
+					},{
+						value :"3",text:'周末'
+					},{
+						value :"4",text:'不限'
+					}]);
+					var attTimes = document.getElementById('attTime')
+	                    var timeResult = document.getElementById('atttimeContent');
+	                    attTimes.addEventListener('tap', function(event) {
+	                        attTime.show(function(items) {
+	                            timeResult.innerText = items[0].text;
+	                            //返回 false 可以阻止选择框的关闭
+	                            //return false;
+	                        });
+	                    }, false);
+				    }
+					//Unit类型
+					function addunitPicker(){
+						var attUnits = new mui.PopPicker();
+						attUnits.setData([{
+							value :"1",text:'元/时'
+						},{
+							value :"2",text:'元/天'
+						},{
+							value :"3",text:'元/月'
+						},{
+							value :"4",text:'/不限'
+						}]);
+						var attunits = document.getElementById('attUnit')
+		                    var unitResult = document.getElementById('attunitContent');
+		                    attunits.addEventListener('tap', function(event) {
+		                        attUnits.show(function(items) {
+		                            unitResult.innerText = items[0].text;
+		                        });
+		                    }, false);
+						}
+				    //结算类型
+					function addsettlePicker(){
+						var attSettle = new mui.PopPicker();
+						attSettle.setData([{
+							value :"1",text:'当天结算'
+						},{
+							value :"2",text:'周末结算'
+						},{
+							value :"3",text:'月末结算'
+						},{
+							value :"4",text:'完工结算'
+						}]);
+						var attSettles = document.getElementById('attSettle')
+		                    var settleResult = document.getElementById('attsettleContent');
+		                    attSettles.addEventListener('tap', function(event) {
+		                        attSettle.show(function(items) {
+		                            settleResult.innerText = items[0].text;
+		                        });
+		                    }, false);
+					}
+				//获取学校
+				function attrSchool() {
+					if(user!=null){
+						fkSchoolId = user.fkSchoolId;
+					}
+					if(fkSchoolId != null&&fkSchoolId!="") {
+						mui.ajax({
+							url: 'http://172.19.129.6:86/school/getSchool',
+							type: 'post',
+							data: {
+								fkSchoolId: user.fkSchoolId
+							},
+							dataType: 'json',
+							success: function(data) {
+								mui("#backs")[0].innerHTML = data.schoolname;
+							}
+						})
+					}
+				}
+				//获取兼职信息
+				function attrMainJob() {
+					if(user!=null){
+						fkSchoolId = user.fkSchoolId;
+					}
+					if(fkSchoolId != null&&fkSchoolId!="") {
+						mui.ajax({
+							url: 'http://172.19.129.6:86/plur/selectPlurSchool',
+							type: 'post',
+							data: {
+								fkSchoolId: fkSchoolId
+							},
+							dataType: 'json',
+	
+							success: function(data) {
+								var html = template('plur', data);
+								document.getElementById('jobContent').innerHTML = html;
+							},
+							error: function() {}
+						})
+					}
+				}
+			</script>
+</html>
